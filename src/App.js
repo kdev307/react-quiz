@@ -59,7 +59,7 @@ function reducer(state, action) {
             return {
                 ...state,
                 secondsRemaining: state.secondsRemaining - 1,
-                status: state.secondsRemaining === 0 ? "finished" : state.status,
+                status: state.secondsRemaining === 0 ? "finish" : state.status,
             };
         default:
             throw new Error("Action unknown");
@@ -74,9 +74,10 @@ function App() {
     const maxPossiblePoints = questions.reduce((prev, curr) => prev + curr.points, 0);
 
     useEffect(function () {
-        fetch("http://localhost:8000/questions")
+        // fetch("http://localhost:8000/questions") // using JSON Server
+        fetch("data/questions.json")
             .then((res) => res.json())
-            .then((data) => dispatch({ type: "dataReceived", payload: data }))
+            .then((data) => dispatch({ type: "dataReceived", payload: data.questions }))
             .catch((err) => dispatch({ type: "dataFailed" }));
     }, []);
 
