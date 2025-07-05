@@ -21,7 +21,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "server": "json-server --watch data/questions.json --port 8000"
+        "server": "json-server --watch data/questions.json --port 8000",
+        "both": "concurrently \"npm run start\" \"npm run server\""
     },
     "eslintConfig": {
         "extends": [
